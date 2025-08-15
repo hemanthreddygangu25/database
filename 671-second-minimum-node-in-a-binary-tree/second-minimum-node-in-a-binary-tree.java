@@ -14,29 +14,30 @@
  * }
  */
 class Solution {
-   TreeSet<Integer> x = new TreeSet<>();
+    HashSet<Integer> x = new HashSet<Integer>();
     public int findSecondMinimumValue(TreeNode root) {
-        
         addall(root);
-        x.pollFirst();
-        System.out.println(x.size());
-        if (x.isEmpty()) return -1;
-
-        return x.first();
-
+        if(x.size()<=1)
+        {
+            return -1;
+        }
+        ArrayList<Integer> y=new ArrayList<>();
+        for(int i:x)
+        {
+            y.add(i);
+        }
+        Collections.sort(y);
+        return y.get(1);
         
     }
     public void addall(TreeNode node)
     {
-        if(node==null)
-        {
-            return ;
-        }
-        
+        if(node == null)
+        return;
+
         x.add(node.val);
-        
         addall(node.left);
         addall(node.right);
-        
     }
+
 }
